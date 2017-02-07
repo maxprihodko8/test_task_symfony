@@ -6,7 +6,7 @@ The backend test focus on PHP Symfony 2/3 version and SQL.
 
 The frontend test focus on Typescript/Javascript Angular 2 and Bootstrap Css.
 
-*You should read completely read this fill before starting.*
+*You should read completely this file before starting.*
 
 You should know how to use Symfony 2/3 and a base of FOSRestBundle and JMSSerializerBundle.
 You should know the basic of Angular 2.
@@ -16,12 +16,11 @@ Do one commit per task with the task information in the comment.
 You have 2 hours to make the test, do as much as you can.
 *You can do the tasks in the order you want.*
 
-Once you are done send a zip back.
+Once you are done send a zip back with the entire folder but with the angular/node_modules, symfony_demo/vendor, symfony_demo/var/logs and symfony_demo/var/cache folders.
 
 #Backend Test
 
 Requirements: php >=5.6
-
 
 Go to the symfony_demo folder
 
