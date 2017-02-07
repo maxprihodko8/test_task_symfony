@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
@@ -84,6 +85,8 @@ class Post
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @JMS\MaxDepth(1)
      */
     private $author;
 
@@ -96,6 +99,8 @@ class Post
      *      orphanRemoval=true
      * )
      * @ORM\OrderBy({"publishedAt": "DESC"})
+     *
+     * @JMS\Exclude()
      */
     private $comments;
 

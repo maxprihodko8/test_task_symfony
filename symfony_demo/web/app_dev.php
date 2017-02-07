@@ -34,5 +34,10 @@ if (PHP_VERSION_ID < 70000) {
 }
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
+
+$response->headers->set('Access-Control-Allow-Origin', $request->headers->get('Origin'));
+$response->headers->set('Access-Control-Allow-Credentials', 'true');
+$response->headers->set('Access-Control-Expose-Headers', strtolower(implode(', ', ['location'])));
+
 $response->send();
 $kernel->terminate($request, $response);
