@@ -47,6 +47,7 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @JMS\Exclude()
      * @ORM\Column(type="string")
      */
     private $password;
