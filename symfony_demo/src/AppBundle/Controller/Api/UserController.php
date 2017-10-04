@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Api;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations as FOS;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UserController extends Controller
 {
@@ -39,6 +40,12 @@ class UserController extends Controller
      */
     public function setRolesAction(User $theUser, array $roles)
     {
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+
+        if (empty($currentUser) || $currentUser->getId() !== $theUser->getId()) {
+            throw new HttpException(403, 'You can\'t change another users');
+        }
+
         $theUser->setRoles($roles);
 
         $manager = $this->getDoctrine()->getManagerForClass(User::class);
