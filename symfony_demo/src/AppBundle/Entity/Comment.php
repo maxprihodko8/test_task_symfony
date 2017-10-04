@@ -20,6 +20,8 @@ use JMS\Serializer\Annotation as Serializer;
  * @ORM\Entity
  * @ORM\Table(name="symfony_demo_comment")
  *
+ * @Serializer\ExclusionPolicy("all")
+
  * Defines the properties of the Comment entity to represent the blog comments.
  * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
  *
@@ -35,6 +37,7 @@ class Comment
      * @var int
      *
      * @ORM\Id
+     * @Serializer\Expose()
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
@@ -43,6 +46,7 @@ class Comment
     /**
      * @var Post
      *
+     * @Serializer\Expose()
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -51,6 +55,7 @@ class Comment
     /**
      * @var string
      *
+     * @Serializer\Expose()
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="comment.blank")
      * @Assert\Length(
@@ -65,6 +70,7 @@ class Comment
     /**
      * @var \DateTime
      *
+     * @Serializer\Expose()
      * @ORM\Column(type="datetime")
      * @Assert\DateTime
      */
@@ -73,6 +79,7 @@ class Comment
     /**
      * @var User
      *
+     * @Serializer\Expose()
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */

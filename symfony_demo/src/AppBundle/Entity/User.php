@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="symfony_demo_user")
+ * @Serializer\ExclusionPolicy("all")
  *
  * Defines the properties of the User entity to represent the application users.
  * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
@@ -25,6 +26,7 @@ class User implements UserInterface
      * @var int
      *
      * @ORM\Id
+     * @Serializer\Expose()
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
@@ -33,6 +35,7 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @Serializer\Expose()
      * @ORM\Column(type="string", unique=true)
      */
     private $username;
@@ -40,6 +43,7 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @Serializer\Expose()
      * @ORM\Column(type="string", unique=true)
      */
     private $email;
@@ -55,6 +59,7 @@ class User implements UserInterface
     /**
      * @var array
      *
+     * @Serializer\Expose()
      * @ORM\Column(type="json_array")
      */
     private $roles = [];

@@ -10,6 +10,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
  * @ORM\Table(name="symfony_demo_post")
+ * @Serializer\ExclusionPolicy("all")
  *
  * Defines the properties of the Post entity to represent the blog posts.
  *
@@ -36,6 +37,7 @@ class Post
      *
      * @ORM\Id
      * @ORM\GeneratedValue
+     * @Serializer\Expose()
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -44,6 +46,7 @@ class Post
      * @var string
      *
      * @ORM\Column(type="string")
+     * @Serializer\Expose()
      * @Assert\NotBlank
      */
     private $title;
@@ -51,6 +54,7 @@ class Post
     /**
      * @var string
      *
+     * @Serializer\Expose()
      * @ORM\Column(type="string")
      */
     private $slug;
@@ -59,6 +63,7 @@ class Post
      * @var string
      *
      * @ORM\Column(type="string")
+     * @Serializer\Expose()
      * @Assert\NotBlank(message="post.blank_summary")
      */
     private $summary;
@@ -66,6 +71,7 @@ class Post
     /**
      * @var string
      *
+     * @Serializer\Expose()
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="post.blank_content")
      * @Assert\Length(min=10, minMessage="post.too_short_content")
@@ -75,6 +81,7 @@ class Post
     /**
      * @var \DateTime
      *
+     * @Serializer\Expose()
      * @ORM\Column(type="datetime")
      * @Assert\DateTime
      */
@@ -86,6 +93,7 @@ class Post
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      *
+     * @Serializer\Expose()
      * @Serializer\MaxDepth(1)
      */
     private $author;
@@ -100,7 +108,6 @@ class Post
      * )
      * @ORM\OrderBy({"publishedAt": "DESC"})
      *
-     * @Serializer\Exclude()
      */
     private $comments;
 
